@@ -43,7 +43,7 @@ class Admin_PostCreateCtrl(AdminCtrl):
     def post(self):
         try:
             post_title   = self.input('post_title')
-            post_descp   = self.input('post_descp')
+            post_descr   = self.input('post_descr')
             post_author  = self.input('post_author')
             post_source  = self.input('post_source')
             post_summary = self.input('post_summary')
@@ -77,8 +77,8 @@ class Admin_PostCreateCtrl(AdminCtrl):
                     term_imap[term_id] = term_name
 
             post_id = self.datum('posts').invoke(
-                    'insert into posts (user_id, post_title, post_descp, post_author, post_source, post_summary, post_content,post_stat, post_rank, post_ptms, post_ctms, post_utms) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                    (self.current_user['user_id'], post_title, post_descp, post_author, post_source, post_summary, post_content, post_stat, post_rank, post_ptms, post_ctms, post_utms ,)).lastrowid
+                    'insert into posts (user_id, post_title, post_descr, post_author, post_source, post_summary, post_content,post_stat, post_rank, post_ptms, post_ctms, post_utms) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                    (self.current_user['user_id'], post_title, post_descr, post_author, post_source, post_summary, post_content, post_stat, post_rank, post_ptms, post_ctms, post_utms ,)).lastrowid
 
             if term_imap:
                 for term_id in term_imap:
@@ -124,7 +124,7 @@ class Admin_PostCtrl(AdminCtrl):
         try:
             post_id      = self.input('post_id')
             post_title   = self.input('post_title')
-            post_descp   = self.input('post_descp')
+            post_descr   = self.input('post_descr')
             post_author  = self.input('post_author')
             post_source  = self.input('post_source')
             post_summary = self.input('post_summary')
@@ -165,8 +165,8 @@ class Admin_PostCtrl(AdminCtrl):
             post_tids = self.datum('posts').result('select term_id from post_terms where post_id = ?', (post_id, ))
 
             self.datum('posts').invoke(
-                    'update posts set user_id=?,post_title=?,post_descp=?,post_author=?,post_source=?,post_summary=?,post_content=?,post_stat=?,post_rank=?+post_plus-post_mins,post_ptms=?,post_utms=? where post_id=?',
-                    (self.current_user['user_id'], post_title, post_descp, post_author, post_source, post_summary, post_content, post_stat, post_rank, post_ptms, post_utms, post_id,))
+                    'update posts set user_id=?,post_title=?,post_descr=?,post_author=?,post_source=?,post_summary=?,post_content=?,post_stat=?,post_rank=?+post_plus-post_mins,post_ptms=?,post_utms=? where post_id=?',
+                    (self.current_user['user_id'], post_title, post_descr, post_author, post_source, post_summary, post_content, post_stat, post_rank, post_ptms, post_utms, post_id,))
             self.datum('posts').invoke('delete from post_terms where post_id = ?', (post_id,))
 
             if term_imap:

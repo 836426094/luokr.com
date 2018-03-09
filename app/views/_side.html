@@ -28,7 +28,7 @@
     <ul class="nav nav-tabs nav-stacked">
         <li class="active"><a href="javascript:;">置顶文章</a></li>
         {% for val in posts_top %}
-        <li><a class="texted" title="{{ val['post_descp'] and val['post_descp'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
+        <li><a class="texted" title="{{ val['post_descr'] and val['post_descr'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
         {% end %}
     </ul>
     {% end %}
@@ -37,7 +37,7 @@
     <ul class="nav nav-tabs nav-stacked">
         <li class="active"><a href="javascript:;">热门文章</a></li>
         {% for val in posts_hot %}
-        <li><a class="texted" title="{{ val['post_descp'] and val['post_descp'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
+        <li><a class="texted" title="{{ val['post_descr'] and val['post_descr'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
         {% end %}
     </ul>
     {% end %}
@@ -46,7 +46,7 @@
     <ul class="nav nav-tabs nav-stacked">
         <li class="active"><a href="javascript:;">最新文章</a></li>
         {% for val in posts_new %}
-        <li><a class="texted" title="{{ val['post_descp'] and val['post_descp'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
+        <li><a class="texted" title="{{ val['post_descr'] and val['post_descr'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
         {% end %}
     </ul>
     {% end %}
@@ -55,7 +55,7 @@
     <ul class="nav nav-tabs nav-stacked">
         <li class="active"><a href="javascript:;">相关文章</a></li>
         {% for val in posts_rel %}
-        <li><a class="texted" title="{{ val['post_descp'] and val['post_descp'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
+        <li><a class="texted" title="{{ val['post_descr'] and val['post_descr'] or val['post_title'] }}" href="/p/{{ val['post_id']}}">{{ val['post_title'] }}</a></li>
         {% end %}
     </ul>
     {% end %}

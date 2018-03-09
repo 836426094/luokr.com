@@ -1,7 +1,7 @@
 {% extends "../_base.html" %}
 
 {% block title %}{{ post['post_title'] }} - {{ handler.get_runtime_conf('title') }}{% end %}
-{% block descp %}{{ post['post_descp'] and post['post_descp'] or post['post_title'] }}{% end %}
+{% block descr %}{{ post['post_descr'] and post['post_descr'] or post['post_title'] }}{% end %}
 
 {% block keyws %}{% if post['post_id'] in ptids %}{% for term in ptids[post['post_id']] %}{{ ptags[term['term_id']]['term_name']}} {% end %}{% end %}{{ handler.get_runtime_conf('keyws') }}{% end %}
 
@@ -29,7 +29,7 @@
     <div class="span8">
         <article class="article-wrap">
             <div class="article-head">
-                <a href="/p/{{ post['post_id']}}" title="{{ post['post_descp'] and post['post_descp'] or post['post_title'] }}"><h3>{{ post['post_title'] }}</h3></a>
+                <a href="/p/{{ post['post_id']}}" title="{{ post['post_descr'] and post['post_descr'] or post['post_title'] }}"><h3>{{ post['post_title'] }}</h3></a>
                 <p><small>标签：</small>
                 {% if post['post_id'] in ptids %}
                 <small>

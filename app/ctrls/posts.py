@@ -53,9 +53,9 @@ class PostsCtrl(BasicCtrl):
             psers = self.utils().array_keyto(self.datum('users').result('select * from users where user_id in (' + ','.join(str(i['user_id']) for i in posts) + ')'), 'user_id')
 
         terms_top = self.datum('terms').result('select * from terms where term_refc>0 order by term_refc desc, term_id desc limit 32')
-        posts_top = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? and post_rank>=? order by post_rank desc, post_id desc limit 9', (stime, self.get_runtime_conf('index_posts_top_rank')))
-        posts_hot = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? order by post_refc desc, post_id desc limit 9', (stime,))
-        posts_new = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? order by post_ptms desc, post_id desc limit 9', (stime,))
+        posts_top = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? and post_rank>=? order by post_rank desc, post_id desc limit 9', (stime, self.get_runtime_conf('index_posts_top_rank')))
+        posts_hot = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? order by post_refc desc, post_id desc limit 9', (stime,))
+        posts_new = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? order by post_ptms desc, post_id desc limit 9', (stime,))
         posts_rel = []
         talks_new = self.datum('talks').result('select * from talks where talk_rank>=? order by talk_id desc limit 9', (self.get_runtime_conf('posts_talks_min_rank'), ))
 
@@ -104,14 +104,14 @@ class PostCtrl(BasicCtrl):
         else:
             post_next = 0
 
-        posts_top = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? and post_rank>=? order by post_rank desc, post_id desc limit 9', (stime, self.get_runtime_conf('index_posts_top_rank')))
-        posts_hot = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? order by post_refc desc, post_id desc limit 9', (stime,))
-        posts_new = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? order by post_ptms desc, post_id desc limit 9', (stime,))
+        posts_top = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? and post_rank>=? order by post_rank desc, post_id desc limit 9', (stime, self.get_runtime_conf('index_posts_top_rank')))
+        posts_hot = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? order by post_refc desc, post_id desc limit 9', (stime,))
+        posts_new = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? order by post_ptms desc, post_id desc limit 9', (stime,))
         posts_rel = None
         if post['post_id'] in ptids:
             poids = self.datum('posts').result('select distinct post_id from post_terms where post_id<>? and term_id in (' + ','.join(str(i['term_id']) for i in ptids[post['post_id']]) + ') order by term_id desc limit 9', (post['post_id'],))
             if poids:
-                posts_rel = self.datum('posts').result('select post_id,post_title,post_descp from posts where post_stat>0 and post_ptms<? and post_id in (' + ','.join(str(i['post_id']) for i in poids) + ') order by post_ptms desc, post_id desc limit 9', (stime,))
+                posts_rel = self.datum('posts').result('select post_id,post_title,post_descr from posts where post_stat>0 and post_ptms<? and post_id in (' + ','.join(str(i['post_id']) for i in poids) + ') order by post_ptms desc, post_id desc limit 9', (stime,))
 
         terms_top = self.datum('terms').result('select * from terms where term_refc>0 order by term_refc desc, term_id desc limit 32')
 

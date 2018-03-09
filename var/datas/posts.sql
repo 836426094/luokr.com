@@ -11,7 +11,7 @@ CREATE TABLE posts (
     post_id      INTEGER          PRIMARY KEY AUTOINCREMENT,
     user_id      INTEGER          DEFAULT ( 0 ),
     post_title   VARCHAR( 128 ),
-    post_descp   VARCHAR( 256 ),
+    post_descr   VARCHAR( 256 ),
     post_author  VARCHAR( 128 ),
     post_source  VARCHAR( 1024 ),
     post_summary TEXT,
