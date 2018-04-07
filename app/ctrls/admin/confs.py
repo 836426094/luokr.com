@@ -22,7 +22,7 @@ class Admin_ConfCtrl(AdminCtrl):
     @admin
     def get(self):
         conf_name = self.input('conf_name')
-        conf = self.datum('confs').single('select * from confs where conf_name = ? limit 1', (conf_name, ))
+        conf = self.datum('confs').record('select * from confs where conf_name = ? limit 1', (conf_name, ))
         if not conf:
             self.flash(0, {'sta': 404})
             return

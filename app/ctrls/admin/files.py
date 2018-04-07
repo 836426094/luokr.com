@@ -87,7 +87,7 @@ class Admin_FileDeleteCtrl(AdminCtrl):
             fid = self.input('file_id')
             ctm = self.input('file_ctms')
 
-            res = self.datum('files').single('select * from files where file_id = ?', (fid,))
+            res = self.datum('files').record('select * from files where file_id = ?', (fid,))
             if not res:
                 self.flash(0)
                 return

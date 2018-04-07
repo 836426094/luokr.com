@@ -21,7 +21,7 @@ class Admin_LinkCtrl(AdminCtrl):
     @admin
     def get(self):
         link_id = self.input('link_id')
-        link = self.datum('links').single('select * from links where link_id = ?', (link_id,))
+        link = self.datum('links').record('select * from links where link_id = ?', (link_id,))
         if not link:
             self.flash(0, {'sta': 404})
             return

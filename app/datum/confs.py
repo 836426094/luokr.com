@@ -18,7 +18,7 @@ class ConfsDatum(Datum):
 
     def obtain(self, name):
         if name not in self._cache:
-            ret = self.single('select conf_vals from confs where conf_name = ?', (name, ))
+            ret = self.record('select conf_vals from confs where conf_name = ?', (name, ))
             if ret:
                 self._cache[name] = ret['conf_vals']
             else:
@@ -26,7 +26,7 @@ class ConfsDatum(Datum):
         return self._cache[name]
 
     def exists(self, name):
-        ret = self.single('select 1 from confs where conf_name = ?', (name, ))
+        ret = self.record('select 1 from confs where conf_name = ?', (name, ))
         return bool(ret)
 
     def upsert(self, name, vals):

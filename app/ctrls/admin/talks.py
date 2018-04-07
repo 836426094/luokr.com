@@ -20,7 +20,7 @@ class Admin_TalkCtrl(AdminCtrl):
     @admin
     def get(self):
         talk_id = self.input('talk_id')
-        talk = self.datum('talks').single('select * from talks where talk_id = ?', (talk_id ,))
+        talk = self.datum('talks').record('select * from talks where talk_id = ?', (talk_id ,))
         if not talk:
             self.flash(0, {'sta': 404})
             return

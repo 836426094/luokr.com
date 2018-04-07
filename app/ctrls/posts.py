@@ -17,7 +17,7 @@ class PostsCtrl(BasicCtrl):
         _tag = None
 
         if _tnm:
-            _tag = self.datum('terms').single('select * from terms where term_name = ? limit 1', (str(_tnm),))
+            _tag = self.datum('terms').record('select * from terms where term_name = ? limit 1', (str(_tnm),))
 
         if _tag:
             posts = self.datum('posts').result(
@@ -90,14 +90,14 @@ class PostCtrl(BasicCtrl):
         ptids = self.utils().array_group(ptids, 'post_id')
         psers = self.utils().array_keyto(self.datum('users').result('select * from users where user_id=?', (post['user_id'], )), 'user_id')
 
-        post_prev = self.datum('posts').single(
+        post_prev = self.datum('posts').record(
                 'select post_id from posts where post_stat>0 and post_ptms<? and post_id<? order by post_id desc limit 1', (stime, post_id, ))
         if post_prev:
             post_prev = post_prev['post_id']
         else:
             post_prev = 0
 
-        post_next = self.datum('posts').single(
+        post_next = self.datum('posts').record(
                 'select post_id from posts where post_stat>0 and post_ptms<? and post_id>? order by post_id asc limit 1', (stime, post_id, ))
         if post_next:
             post_next = post_next['post_id']

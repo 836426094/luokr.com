@@ -68,7 +68,7 @@ class Admin_PostCreateCtrl(AdminCtrl):
             term_imap = {}
             term_ctms = self.stime()
             for term_name in term_list:
-                term_id = self.datum('terms').single('select term_id from terms where term_name = ?', (term_name ,))
+                term_id = self.datum('terms').record('select term_id from terms where term_name = ?', (term_name ,))
                 if term_id:
                     term_id = term_id['term_id']
                 else:
@@ -153,7 +153,7 @@ class Admin_PostCtrl(AdminCtrl):
             term_imap = {}
             term_ctms = self.stime()
             for term_name in term_list:
-                term_id = self.datum('terms').single('select term_id from terms where term_name = ?', (term_name ,))
+                term_id = self.datum('terms').record('select term_id from terms where term_name = ?', (term_name ,))
                 if term_id:
                     term_id = term_id['term_id']
                 else:

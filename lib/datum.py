@@ -33,7 +33,7 @@ class Datum(object):
         cur.close()
         return ret
 
-    def single(self, *args, **kwargs):
+    def record(self, *args, **kwargs):
         cur = self.source.cursor()
         cur.execute(*args, **kwargs)
         ret = cur.fetchone()

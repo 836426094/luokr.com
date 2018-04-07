@@ -35,7 +35,7 @@ class Admin_MailResendCtrl(AdminCtrl):
     @admin
     def post(self):
         try:
-            mail = self.datum('mails').single('select * from mails where mail_id = ?', (self.input('mail_id'),))
+            mail = self.datum('mails').record('select * from mails where mail_id = ?', (self.input('mail_id'),))
             if not mail:
                 self.flash(0)
                 return
