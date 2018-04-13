@@ -2,11 +2,7 @@
 
 {% block title %}新增文章 - 控制面板 - {{ handler.get_runtime_conf('title') }}{% end %}
 
-{% block navs %}
-{% module Template("admin/_navs.html", menu='admin') %}
-{% end %}
-
-{% block head_css %}
+{% block head %}
 <style>
     .form-horizontal .control-label {
         float: left;
@@ -20,6 +16,10 @@
         cursor: pointer;
     }
 </style>
+{% end %}
+
+{% block navs %}
+{% module Template("admin/_navs.html", menu='admin') %}
 {% end %}
 
 {% block main %}
@@ -130,7 +130,7 @@
 </div>
 {% end %}
 
-{% block foot_js  %}
+{% block foot %}
 {% if not mode %}
 <script type="text/javascript" src="{{ handler.asset('cke/ckeditor.js') }}"></script>
 <script type="text/javascript">

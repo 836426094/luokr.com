@@ -5,11 +5,7 @@
 
 {% block keyws %}{% if post['post_id'] in ptids %}{% for term in ptids[post['post_id']] %}{{ ptags[term['term_id']]['term_name']}} {% end %}{% end %}{{ handler.get_runtime_conf('keyws') }}{% end %}
 
-{% block navs %}
-{% module Template("_navs.html", menu='posts') %}
-{% end %}
-
-{% block head_css %}
+{% block head %}
 <style>
     #form-talk .control-label {
         text-align: left;
@@ -22,6 +18,10 @@
         #talks {display: none}
     }
 </style>
+{% end %}
+
+{% block navs %}
+{% module Template("_navs.html", menu='posts') %}
 {% end %}
 
 {% block main %}
@@ -142,7 +142,7 @@
 </div>
 {% end %}
 
-{% block foot_js %}
+{% block foot %}
 <script src="{{ handler.asset('gcp/src/run_prettify.js?skin=solarized-dark', vers = False) }}" type="text/javascript"></script>
 <script>
     $(function() {
